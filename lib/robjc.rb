@@ -15,13 +15,13 @@ module Resource
     # Load target
     target = project.targets.first
     phase = target.resources_build_phase
-    phase.files_references.each do |f|
-        puts "----------"
-        puts f.class
-        puts f.last_known_file_type
+    # phase.files_references.each do |f|
+        # puts "----------"
+        # puts f.class
+        # puts f.last_known_file_type
         # puts f.name
         # puts f.explicit_file_type
-    end
+    # end
 
     # Create reader
     # reader = Resource::Reader.new(target)
