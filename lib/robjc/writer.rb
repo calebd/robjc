@@ -37,7 +37,7 @@ module Resources
     end
 
     def render_template_for_class(template, klass)
-      [ ".h", ".m" ].each do |e|
+      [ "h", "m" ].each do |e|
         render_template_to_file "#{template}.#{e}", "#{klass}.#{e}"
       end
     end

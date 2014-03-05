@@ -32,7 +32,7 @@ module Resources
   end
 
   def self.write
-    writer = Resource::Writer.new
+    writer = Resources::Writer.new
     writer.write
   end
 
