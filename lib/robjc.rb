@@ -3,18 +3,18 @@ require 'robjc/version'
 require 'robjc/reader'
 require 'robjc/writer'
 
-module Resource
+module Resources
 
   def self.read
 
     # Load project
-    project_path = Dir.glob('*.xcodeproj').first
-    project = Xcodeproj::Project.new(project_path)
-    project.initialize_from_file
+    # project_path = Dir.glob('*.xcodeproj').first
+    # project = Xcodeproj::Project.new(project_path)
+    # project.initialize_from_file
 
     # Load target
-    target = project.targets.first
-    phase = target.resources_build_phase
+    # target = project.targets.first
+    # phase = target.resources_build_phase
     # phase.files_references.each do |f|
         # puts "----------"
         # puts f.class
@@ -27,9 +27,13 @@ module Resource
     # reader = Resource::Reader.new(target)
 
     # Create writer
+
+    # writer.add_to_target(target)
+  end
+
+  def self.write
     writer = Resource::Writer.new
     writer.write
-    # writer.add_to_target(target)
   end
 
 end

@@ -5,7 +5,7 @@ require 'robjc/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "robjc"
-  spec.version       = Resource::VERSION
+  spec.version       = Resources::VERSION
   spec.authors       = ["Caleb Davenport"]
   spec.email         = ["calebmdavenport@gmail.com"]
   spec.summary       = %q{A summary.}

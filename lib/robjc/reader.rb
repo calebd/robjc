@@ -1,4 +1,4 @@
-module Resource
+module Resources
   class Reader
 
     def init(target)
