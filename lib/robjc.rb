@@ -1,6 +1,7 @@
-require "xcodeproj"
-require "robjc/version"
-# require "robjc/reader"
+require 'xcodeproj'
+require 'robjc/version'
+require 'robjc/reader'
+require 'robjc/writer'
 
 module Resource
 
@@ -14,12 +15,21 @@ module Resource
     # Load target
     target = project.targets.first
     phase = target.resources_build_phase
-    puts phase.files
+    phase.files_references.each do |f|
+        puts "----------"
+        puts f.class
+        puts f.last_known_file_type
+        # puts f.name
+        # puts f.explicit_file_type
+    end
 
     # Create reader
     # reader = Resource::Reader.new(target)
 
-
+    # Create writer
+    writer = Resource::Writer.new
+    writer.write
+    # writer.add_to_target(target)
   end
 
 end
