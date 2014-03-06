@@ -1,8 +1,14 @@
 //
 // CMDStringResources.m
-// Automatically generated on <%= Time.now.to_s %>
+// Automatically generated on <%= generated_at.to_s %>
 //
 
 @implementation CMDStringResources
+
+<% resources[:strings].each do |s| %>
+- (NSString *)<%= s %> {
+  return NSLocalizedString(@"<%= s %>", nil);
+}
+<% end %>
 
 @end

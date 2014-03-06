@@ -1,8 +1,12 @@
 //
 // CMDStringResources.h
-// Automatically generated on <%= Time.now.to_s %>
+// Automatically generated on <%= generated_at.to_s %>
 //
 
 @interface CMDStringResources : NSObject
+
+<% resources[:strings].each do |s| %>
+- (NSString *)<%= s %>;
+<% end %>
 
 @end

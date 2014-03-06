@@ -4,9 +4,10 @@ module Resources
   class Writer
 
     attr_accessor :generated_at
+    attr_accessor :resources
 
-    def initialize
-
+    def initialize(resources)
+      @resources = resources
     end
 
     def write

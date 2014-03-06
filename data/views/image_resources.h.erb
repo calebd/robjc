@@ -1,8 +1,14 @@
 //
 // CMDImageResources.h
-// Automatically generated on <%= Time.now.to_s %>
+// Automatically generated on <%= generated_at.to_s %>
 //
 
 @interface CMDImageResources : NSObject
+
+<% resources[:asset_catalogs].each do |c| %>
+<% c.images.each do |i| %>
+- (UIImage *)<%= i %>;
+<% end %>
+<% end %>
 
 @end

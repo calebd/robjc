@@ -1,8 +1,16 @@
 //
 // CMDImageResources.m
-// Automatically generated on <%= Time.now.to_s %>
+// Automatically generated on <%= generated_at.to_s %>
 //
 
 @implementation CMDImageResources
+
+<% resources[:asset_catalogs].each do |c| %>
+<% c.images.each do |i| %>
+- (UIImage *)<%= i %> {
+    return [UIImage imageNamed:@"<%= i %>"];
+}
+<% end %>
+<% end %>
 
 @end

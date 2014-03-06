@@ -1,7 +1,9 @@
 require 'robjc/resources/resource'
 
-class Resources::AssetCatalogesource < Resources::Resource
+class Resources::AssetCatalogResource < Resources::Resource
   attr_reader :images
+
+  IMAGE_SET_EXTENSION = "imageset"
 
   def images
     @images ||= image_names
@@ -10,19 +12,13 @@ class Resources::AssetCatalogesource < Resources::Resource
   private
 
   def image_names
-    Dir.glob(File.join(path, "*.imageset"))
+    image_sets.map do |f|
+      File.basename(f, ".#{IMAGE_SET_EXTENSION}")
+    end
   end
 
-  def read_strings_file
-    # contents = File.read(path)
-    # lines = contents.split('\n')
-    # pairs = {}
-    # lines.each do |l|
-    #   key = lines.match(/^"([^"]+)"/)[1]
-    #   value = lines.match(//)[1]
-    #   pairs[key] = value
-    # end
-    {}
+  def image_sets
+    Dir.glob(File.join(path, "*.#{IMAGE_SET_EXTENSION}"))
   end
 
 end

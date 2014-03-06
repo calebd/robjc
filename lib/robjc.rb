@@ -34,7 +34,10 @@ module Resources
   end
 
   def self.write
-    writer = Resources::Writer.new
+    reader = Resources::Reader.new
+    resources = reader.resources
+
+    writer = Resources::Writer.new(resources)
     writer.write
   end
 
