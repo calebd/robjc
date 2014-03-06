@@ -6,6 +6,8 @@ require 'robjc/writer'
 module Resources
 
   def self.read
+    reader = Resources::Reader.new
+    puts reader.resources
 
     # Load project
     # project_path = Dir.glob('*.xcodeproj').first
