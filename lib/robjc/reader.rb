@@ -1,4 +1,5 @@
 require 'robjc/resources/string_resource'
+require 'robjc/resources/asset_catalog_resource'
 
 module Resources
   class Reader
@@ -54,6 +55,8 @@ module Resources
     def asset_catalogs
       @asset_catalogs ||= files.select do |f|
         f.match /.xcassets$/i
+      end.map do |f|
+        Resources::AssetCatalogResource.new(f)
       end
     end
 

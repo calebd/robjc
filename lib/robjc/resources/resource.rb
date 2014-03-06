@@ -2,8 +2,8 @@ class Resources::Resource
 
   attr_reader :path
 
-  def init(path)
-    @path = path
+  def initialize(path)
+    @path = File.expand_path(path)
   end
 
 end

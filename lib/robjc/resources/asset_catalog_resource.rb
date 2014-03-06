@@ -1,13 +1,17 @@
 require 'robjc/resources/resource'
 
-class Resources::StringResource < Resources::Resource
-  attr_reader :pairs
+class Resources::AssetCatalogesource < Resources::Resource
+  attr_reader :images
 
-  def pairs
-    @pairs ||= read_strings_file
+  def images
+    @images ||= image_names
   end
 
   private
+
+  def image_names
+    Dir.glob(File.join(path, "*.imageset"))
+  end
 
   def read_strings_file
     # contents = File.read(path)
