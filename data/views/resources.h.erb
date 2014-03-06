@@ -6,11 +6,13 @@
 #import "CMDImageResources.h"
 #import "CMDStringResources.h"
 
-#define R CMDResources
+#define R [CMDResources sharedResources]
 
 @interface CMDResources : NSObject
 
-+ (CMDImageResources *)image;
-+ (CMDStringResources *)string;
++ (instancetype)sharedResources;
+
+- (CMDImageResources *)image;
+- (CMDStringResources *)string;
 
 @end

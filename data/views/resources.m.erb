@@ -5,14 +5,34 @@
 
 #import "CMDResources.h"
 
-@implementation CMDResources
-
-+ (CMDImageResources *)image {
-  return nil;
+@implementation CMDResources {
+    CMDImageResources *_image;
+    CMDStringResources *_string;
 }
 
-+ (CMDStringResources *)string {
-  return nil;
++ (instancetype)sharedResources {
+    static dispatch_once_t token;
+    static CMDResources *resources;
+    dispatch_once(&token, ^{
+        resources = [CMDResources new];
+    });
+    return resources;
+}
+
+
+- (CMDImageResources *)image {
+    if (!_image) {
+        _image = [CMDImageResources new];
+    }
+    return _image;
+}
+
+
+- (CMDStringResources *)string {
+    if (!_string) {
+        _string = [CMDStringResources new];
+    }
+    return _string;
 }
 
 @end

@@ -7,7 +7,7 @@
 
 <% resources[:strings].each do |resource| %>
 <% resource.strings.each do |string| %>
-+ (NSString *)<%= resource.method_name(string) %>;
+- (NSString *)<%= resource.method_name(string) %>;
 <% end %>
 <% end %>
 

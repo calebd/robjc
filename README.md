@@ -1,4 +1,4 @@
-# Robjc
+# Objective-C Resources
 
 TODO: Write a gem description
 
