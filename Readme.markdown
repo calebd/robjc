@@ -24,7 +24,7 @@ Run the generator:
 $ robjc generate
 ```
 
-Add `Resources/CMDResources` to your Xcode project. You might also want to add `CMDResources.h` to you prefix header.
+Add `Resources/CMDResources` to your Xcode project. You might also want to add `CMDResources.h` to you prefix header and add the generated resources folder to your `.gitignore`.
 
 ## Usage
 
