@@ -1,6 +1,14 @@
 # Objective-C Resources
 
-TODO: Write a gem description
+`robjc` turns resources in Objective-C projects into compiled constants. If an image name changes, or a localized string goes away, references to those resources in code will cause build errors.
+
+`robjc` watches your project for changes to images and localized strings and automatically generates code that refers to those resources. All generated code is placed in `Resources/CMDResources`.
+
+**This is experimental**. I would love to add:
+
+- Support for loading nibs, storyboard, json files, and plists
+- Better file name to method conversion
+- Ability for the gem to automatically link the required files into the target project
 
 ## Installation
 

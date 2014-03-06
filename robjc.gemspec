@@ -8,9 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Resources::VERSION
   spec.authors       = ["Caleb Davenport"]
   spec.email         = ["calebmdavenport@gmail.com"]
-  spec.summary       = %q{A summary.}
-  spec.description   = %q{A description.}
-  spec.homepage      = ""
+  spec.summary       = %q{robjc turns resources in Objective-C projects into compiled constants.}
+  spec.homepage      = "https://github.com/calebd/robjc"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
