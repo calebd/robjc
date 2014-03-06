@@ -1,10 +1,11 @@
 require 'erb'
+require 'xcodeproj'
 
 module Resources
   class Writer
 
-    attr_accessor :generated_at
-    attr_accessor :resources
+    attr_reader :generated_at
+    attr_reader :resources
 
     def initialize(resources)
       @resources = resources
@@ -23,7 +24,21 @@ module Resources
       target.add_file_references
     end
 
+    def class_prefix
+      @class_prefix ||= if project
+        project.root_object.attributes['CLASSPREFIX']
+      else
+        'CMD'
+      end
+    end
+
     private
+
+    def project
+      return @project if @project
+      path = Dir.glob('*.xcodeproj').first
+      @project = path ? Xcodeproj::Project.open(path) : nil
+    end
 
     def write_resources_class
       render_template_for_class 'resources', 'CMDResources'
