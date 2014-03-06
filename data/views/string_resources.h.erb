@@ -5,8 +5,10 @@
 
 @interface CMDStringResources : NSObject
 
-<% resources[:strings].each do |s| %>
-- (NSString *)<%= s %>;
+<% resources[:strings].each do |resource| %>
+<% resource.strings.each do |string| %>
++ (NSString *)<%= resource.method_name(string) %>;
+<% end %>
 <% end %>
 
 @end

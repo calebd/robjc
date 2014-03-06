@@ -3,12 +3,14 @@
 // Automatically generated on <%= generated_at.to_s %>
 //
 
+#import "CMDImageResources.h"
+
 @implementation CMDImageResources
 
-<% resources[:asset_catalogs].each do |c| %>
-<% c.images.each do |i| %>
-- (UIImage *)<%= i %> {
-    return [UIImage imageNamed:@"<%= i %>"];
+<% resources[:asset_catalogs].each do |resource| %>
+<% resource.images.each do |image| %>
+- (UIImage *)<%= resource.method_name(image) %> {
+    return [UIImage imageNamed:@"<%= image %>"];
 }
 <% end %>
 <% end %>

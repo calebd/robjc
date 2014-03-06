@@ -3,12 +3,16 @@
 // Automatically generated on <%= generated_at.to_s %>
 //
 
+#import "CMDStringResources.h"
+
 @implementation CMDStringResources
 
-<% resources[:strings].each do |s| %>
-- (NSString *)<%= s %> {
-  return NSLocalizedString(@"<%= s %>", nil);
+<% resources[:strings].each do |resource| %>
+<% resource.strings.each do |string| %>
++ (NSString *)<%= resource.method_name(string) %> {
+    return NSLocalizedString(@"<%= string %>", nil);
 }
+<% end %>
 <% end %>
 
 @end

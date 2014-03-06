@@ -6,4 +6,8 @@ class Resources::Resource
     @path = File.expand_path(path)
   end
 
+  def method_name(string)
+    return string
+  end
+
 end

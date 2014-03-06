@@ -5,9 +5,9 @@
 
 @interface CMDImageResources : NSObject
 
-<% resources[:asset_catalogs].each do |c| %>
-<% c.images.each do |i| %>
-- (UIImage *)<%= i %>;
+<% resources[:asset_catalogs].each do |resource| %>
+<% resource.images.each do |image| %>
+- (UIImage *)<%= resource.method_name(image) %>;
 <% end %>
 <% end %>
 
