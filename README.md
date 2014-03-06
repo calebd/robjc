@@ -4,21 +4,37 @@ TODO: Write a gem description
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Install the gem:
 
-    gem 'robjc'
+```
+$ gem install robjc
+```
 
-And then execute:
+Run the generator:
 
-    $ bundle
+```
+$ robjc generate
+```
 
-Or install it yourself as:
-
-    $ gem install robjc
+Add `Resources/CMDResources` to your Xcode project. You might also want to add `CMDResources.h` to you prefix header.
 
 ## Usage
 
-TODO: Write usage instructions here
+Watch your project for changes:
+
+```
+robjc watch
+```
+
+Use the resource classes to load data into your app:
+
+```
+// This used to be [UIImage imageNamed:@"settings-gear"]
+R.image.settingsGear;
+
+// This used to be NSLocalizedString(@"GENERAL_CANCEL", nil)
+R.string.generalCancel;
+```
 
 ## Contributing
 
