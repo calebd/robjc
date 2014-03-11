@@ -4,6 +4,12 @@ require 'robjc/resources/asset_catalog_resource'
 module Resources
   class Reader
 
+    attr_reader :target
+
+    def initialize(target)
+      @target = target
+    end
+
     def resources
       @resources ||= {
         images: images,
@@ -14,16 +20,29 @@ module Resources
       }
     end
 
-    private
-
-    def files
-      @files ||= Dir.glob('**/*').select do |f|
-        next false if f.match /^pods/i
-        next false if f.match /^vendor/i
-        next false if f.match /\.bundle/i
-        true
+    def self.projects
+      Dir.glob('*.xcodeproj').map do |f|
+        Xcodeproj::Project.open(f)
       end
     end
+
+    def self.targets
+      projects.map do |p|
+        p.targets
+      end.flatten.select do |t|
+        t.is_a? Xcodeproj::Project::Object::PBXNativeTarget
+      end
+    end
+
+    def files
+      @files ||= target.build_phases.map do |phase|
+        phase.files
+      end.flatten.map do |file|
+        file.file_ref.real_path.to_s
+      end
+    end
+
+    private
 
     def images
       @images ||= files.select do |f|
