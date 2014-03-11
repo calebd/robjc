@@ -16,7 +16,9 @@ module Resources
         strings: strings,
         nibs: nibs,
         storyboards: storyboards,
-        asset_catalogs: asset_catalogs
+        asset_catalogs: asset_catalogs,
+        json_files: json_files
+        plists: plists
       }
     end
 
@@ -45,14 +47,14 @@ module Resources
     private
 
     def images
-      @images ||= files.select do |f|
+      files.select do |f|
         next false if f.match /\.xcassets/i
         f.match /\.png$/i
       end
     end
 
     def strings
-      @strings ||= files.select do |f|
+      files.select do |f|
         f.match /\.strings$/i
       end.map do |f|
         Resources::StringResource.new(f)
@@ -60,22 +62,34 @@ module Resources
     end
 
     def nibs
-      @nibs ||= files.select do |f|
+      files.select do |f|
         f.match /\.nib$/
       end
     end
 
     def storyboards
-      @storyboards ||= files.select do |f|
+      files.select do |f|
         f.match /\.storyboard$/i
       end
     end
 
     def asset_catalogs
-      @asset_catalogs ||= files.select do |f|
+      files.select do |f|
         f.match /.xcassets$/i
       end.map do |f|
         Resources::AssetCatalogResource.new(f)
+      end
+    end
+
+    def json_files
+      files.select do |f|
+        f.match /\.json$/i
+      end
+    end
+
+    def plists
+      files.select do |f|
+        f.match /\.plist$/i
       end
     end
 
