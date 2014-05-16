@@ -43,7 +43,7 @@ module Resources
     private
 
     def images
-      files.reject{ |f| f.match /\.xcassets/i }.grep /\.png$/i
+      files.reject{ |f| f.match(/\.xcassets/i) }.grep(/\.png$/i)
     end
 
     def strings
@@ -53,12 +53,12 @@ module Resources
     end
 
     def nibs
-      files.grep /\.nib$/
+      files.grep(/\.nib$/)
       end
     end
 
     def storyboards
-      files.grep /\.storyboard$/i
+      files.grep(/\.storyboard$/i)
     end
 
     def asset_catalogs
@@ -68,11 +68,11 @@ module Resources
     end
 
     def json_files
-      files.grep /\.json$/i
+      files.grep(/\.json$/i)
     end
 
     def plists
-      files.grep /\.plist$/i
+      files.grep(/\.plist$/i)
     end
 
   end
