@@ -9,18 +9,9 @@ class Resources::StringResource < Resources::Resource
     @strings ||= read_strings_file
   end
 
-  def method_name(string)
-    components = string.split('_')
-    string = components.first.downcase
-    if components.length == 1
-      string
-    else
-      components.each_with_index do |s, i|
-        next if i == 0
-        string += s.capitalize
-      end
-    end
-    string
+  def method_name string
+    components = string.split "_"
+    [components.shift.downcase, *components.map(&:capitalize)].join
   end
 
   private
