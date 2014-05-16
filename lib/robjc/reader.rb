@@ -29,17 +29,13 @@ module Resources
     end
 
     def self.targets
-      projects.map do |p|
-        p.targets
-      end.flatten.select do |t|
+      projects.map(&:targets).flatten.select do |t|
         t.is_a? Xcodeproj::Project::Object::PBXNativeTarget
       end
     end
 
     def files
-      @files ||= target.build_phases.map do |phase|
-        phase.files
-      end.flatten.map do |file|
+      @files ||= target.build_phases.map(&:files).flatten.map do |file|
         file.file_ref.real_path.to_s
       end
     end
@@ -47,50 +43,36 @@ module Resources
     private
 
     def images
-      files.select do |f|
-        next false if f.match /\.xcassets/i
-        f.match /\.png$/i
-      end
+      files.reject{ |f| f.match /\.xcassets/i }.grep /\.png$/i
     end
 
     def strings
-      files.select do |f|
-        f.match /\.strings$/i
-      end.map do |f|
+      files.grep(/\.strings$/i).map do |f|
         Resources::StringResource.new(f)
       end
     end
 
     def nibs
-      files.select do |f|
-        f.match /\.nib$/
+      files.grep /\.nib$/
       end
     end
 
     def storyboards
-      files.select do |f|
-        f.match /\.storyboard$/i
-      end
+      files.grep /\.storyboard$/i
     end
 
     def asset_catalogs
-      files.select do |f|
-        f.match /.xcassets$/i
-      end.map do |f|
+      files.grep(/.xcassets$/i).map do |f|
         Resources::AssetCatalogResource.new(f)
       end
     end
 
     def json_files
-      files.select do |f|
-        f.match /\.json$/i
-      end
+      files.grep /\.json$/i
     end
 
     def plists
-      files.select do |f|
-        f.match /\.plist$/i
-      end
+      files.grep /\.plist$/i
     end
 
   end
