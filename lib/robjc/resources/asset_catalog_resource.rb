@@ -9,20 +9,11 @@ class Resources::AssetCatalogResource < Resources::Resource
     @images ||= image_names
   end
 
-    def method_name(string)
-    components = string.split('-')
-    string = components.first.downcase
-    if components.length == 1
-      string
-    else
-      components.each_with_index do |s, i|
-        next if i == 0
-        string += s.capitalize
-      end
-    end
-    string
+  def method_name string
+    components = string.split "-"
+    [components.shift.downcase, *components.map(&:capitalize)].join
   end
-
+  
   private
 
   def image_names
